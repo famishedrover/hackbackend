@@ -56,7 +56,9 @@ def convertToDict(mylist):
         "work_hours": str(mylist[2]),
         "freetime": str(mylist[3]),
         "holperyear": str(mylist[4]),
-        "stress": str(mylist[5])
+        "stress": str(mylist[5]),
+        "new_sscore": str(mylist[6]),
+        "old_sscore": str(mylist[7])
         }
     return d
 
@@ -95,11 +97,14 @@ def predict_optimal_answer (input_vals) :
 
     vals = []
     # vals = new_solution - old_solution
+
     for ix in range(len(x)) :
         diff = p[ix] - x[ix]
         vals.append(diff)
     # pred = 0 is not stressed and pred = 1 is stressed 
     vals.append(pred)
+    vals.append(p[0])
+    vals.append(x[0])
     # last element p[-1] is whether or not the person is in stress . 1 is yes , 0 is not in stress
     # print x
     # print p
@@ -108,7 +113,7 @@ def predict_optimal_answer (input_vals) :
     print 'OPTIMAL-SCHEDULE: ',p
     print 'OUTPUT-SCHEDULE:  ', vals
     vals = convertToDict(vals)
-    # print vals
+    print vals
     return vals
 
 if __name__ == "__main__" :
